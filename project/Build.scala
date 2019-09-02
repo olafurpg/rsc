@@ -111,7 +111,7 @@ object Build extends AutoPlugin {
       lazy val benchAll = command(
         "cleanAll",
         "compileAll",
-        "bench/jmh:run RscParse RscIndex RscOutline RscSemanticdb RscScalasig ScalacCompile"
+        "bench/jmh:run RscParse RscIndex RscOutline RscSemanticdb RscScalasig ScalacCompile YoutlineCompile"
       )
       lazy val publish = command(projects.public.map(_ + "/publish"))
       lazy val publishLocal = command(projects.public.map(_ + "/publishLocal"))
@@ -130,6 +130,7 @@ object Build extends AutoPlugin {
       lazy val benchSemanticdb = "bench/jmh:run RscSemanticdb"
       lazy val benchScalasig = "bench/jmh:run RscScalasig"
       lazy val benchScalac = "bench/jmh:run ScalacCompile"
+      lazy val benchYoutline = "bench/jmh:run YoutlineCompile"
       lazy val rewrite = "examplesCore/rewrite"
     }
 

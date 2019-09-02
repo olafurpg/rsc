@@ -8,6 +8,7 @@ lazy val V = new {
 inThisBuild(List(
   scalaVersion := V.scala
 ))
+cancelable.in(Global) := true
 
 addCommandAlias("ci-fmt", ui.ciFmt)
 addCommandAlias("ci-fast", ui.ciFast)
@@ -32,6 +33,7 @@ addCommandAlias("benchOutline", ui.benchOutline)
 addCommandAlias("benchSemanticdb", ui.benchSemanticdb)
 addCommandAlias("benchScalasig", ui.benchScalasig)
 addCommandAlias("benchScalac", ui.benchScalac)
+addCommandAlias("benchYoutline", ui.benchYoutline)
 addCommandAlias("publish", ui.publish)
 addCommandAlias("publishLocal", ui.publishLocal)
 addCommandAlias("publishSigned", ui.publishSigned)
