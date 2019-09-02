@@ -1,10 +1,13 @@
 lazy val V = new {
   val asm = "6.0"
-  val scala = computeScalaVersionFromTravisYml("2.12")
+  val scala = "2.12.9"
   val scalafix = computeScalafixVersionFromBinScalafix()
-  val scalameta = "4.1.4"
-  val scalatest = "3.0.5"
+  val scalameta = "4.2.2"
+  val scalatest = "3.0.8"
 }
+inThisBuild(List(
+  scalaVersion := V.scala
+))
 
 addCommandAlias("ci-fmt", ui.ciFmt)
 addCommandAlias("ci-fast", ui.ciFast)
@@ -70,8 +73,7 @@ lazy val check = project
     libraryDependencies += "org.scala-lang" % "scalap" % V.scala,
     libraryDependencies += "org.eclipse.jgit" % "org.eclipse.jgit" % "4.6.0.201612231935-r",
     libraryDependencies += "org.scala-lang" % "scala-compiler" % V.scala,
-    libraryDependencies += "org.scalameta" %% "cli" % V.scalameta,
-    libraryDependencies += "org.scalameta" %% "metacp" % V.scalameta,
+    libraryDependencies += "org.scalameta" %% "scalameta" % V.scalameta,
     libraryDependencies += "org.slf4j" % "slf4j-api" % "1.7.25",
     libraryDependencies += "org.slf4j" % "log4j-over-slf4j" % "1.7.25"
   )
@@ -134,7 +136,7 @@ lazy val rsc = project
   .settings(
     commonSettings,
     publishableSettings,
-    libraryDependencies += "org.scalameta" %% "semanticdb" % V.scalameta,
+    libraryDependencies += "org.scalameta" %% "scalameta" % V.scalameta,
     libraryDependencies += "com.lihaoyi" %% "fastparse" % "1.0.0",
     mainClass := Some("rsc.cli.Main")
   )
@@ -171,7 +173,7 @@ lazy val scalafixTests = project
   .enablePlugins(ScalafixTestkitPlugin)
   .settings(
     commonSettings,
-    libraryDependencies += "ch.epfl.scala" % "scalafix-testkit" % V.scalafix % Test cross CrossVersion.full,
+    libraryDependencies += "ch.epfl.scala" % "scalafix-testkit_2.12.8" % V.scalafix % Test,
     scalafixTestkitOutputSourceDirectories :=
       sourceDirectories.in(scalafixOutput, Compile).value ++
         sourceDirectories.in(examplesCore, Compile).value,
@@ -198,7 +200,7 @@ lazy val scalap = project
   .settings(
     commonSettings,
     publishableSettings,
-    libraryDependencies += "org.scalameta" %% "cli" % V.scalameta,
+    libraryDependencies += "org.scalameta" %% "scalameta" % V.scalameta,
     mainClass := Some("scala.meta.cli.Scalap")
   )
 

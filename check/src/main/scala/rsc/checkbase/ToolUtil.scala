@@ -210,7 +210,7 @@ trait ToolUtil extends CacheUtil with NscUtil {
   }
 
   private def metacpVersion: String = {
-    scala.meta.internal.metacp.BuildInfo.version
+    ""
   }
 
   private def metaiVersion: String = {
