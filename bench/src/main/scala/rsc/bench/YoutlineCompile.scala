@@ -3,6 +3,7 @@
 package rsc.bench
 
 import java.util.concurrent.TimeUnit
+import java.nio.file.Files
 import org.openjdk.jmh.annotations._
 import org.openjdk.jmh.annotations.Mode._
 
@@ -17,6 +18,7 @@ class YoutlineCompile {
     val compile = new ScalacCompile()    
     compile.settings.Youtline.value = true
     compile.settings.stopAfter.value = List("pickler")
+    compile.settings.YpickleWrite.value = Files.createTempDirectory("youtline").toString()
     compile.run(bs)
   }
 }
